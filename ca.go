@@ -62,7 +62,10 @@ func CaFirmar(){
 
 	// Private key
 	keyOut, err := os.OpenFile("ca.key", os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0600)
-	pem.Encode(keyOut, &pem.Block{Type: "RSA PRIVATE KEY", Bytes: x509.MarshalPKCS1PrivateKey(priv)})
+	pem.Encode(keyOut, &pem.Block{
+		Type: "RSA PRIVATE KEY",
+		Bytes: x509.MarshalPKCS1PrivateKey(priv),
+	})
 	keyOut.Close()
 	log.Print("Se escribio Private key (ca.key)\n")
 
